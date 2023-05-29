@@ -1,0 +1,229 @@
+<?xml version="1.0" ?>
+<robot name="pilz_robot">
+
+  <!--++++++++++++++++++++++++++++++base_link++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+  <link name="base_footprint"/>
+  <joint name="base_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <joint_properties damping="1" friction="1"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+  </joint>
+  
+  <link name="base_link">
+    <visual name="body">
+      <origin rpy="0 0 -1.57" xyz="-0.007 0.0 0.207"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/base_2.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision name="body_collision">
+      <origin rpy="0 0 -1.57" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/base.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--++++++++++++++++++++++++++++++motors_link++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+  <joint name="motors_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.0625"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1" friction="1"/>
+    <parent link="base_link"/>
+    <child link="motors_link"/>
+  </joint>
+  
+  <link name="motors_link">
+    <visual name="motors">
+      <origin rpy="1.57 0 1.57" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/motors.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision name="motors_collision">
+      <origin rpy="1.57 0 1.57" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/motors.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++caster_wheel_with_breaks_front_left++++++++++++++++++++++++-->
+
+  <joint name="caster_wheel_with_breaks_front_left_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12 0.09 0.05675"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_with_breaks_front_left_link"/>
+  </joint>
+
+  <link name="caster_wheel_with_breaks_front_left_link" type="wheel">
+    <visual name="caster_wheel">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/caster_wheel_with_breaks.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0. 0"/>
+      <geometry>
+        <sphere radius="0.038"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++caster_wheel_back_left++++++++++++++++++++++++-->
+
+  <joint name="caster_wheel_back_left_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.14 0.09 0.05675"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_back_left_link"/>
+  </joint>
+
+  <link name="caster_wheel_back_left_link" type="wheel">
+    <visual name="caster_wheel">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/caster_wheel.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0. 0"/>
+      <geometry>
+        <sphere radius="0.038"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++caster_wheel_with_breaks_front_right++++++++++++++++++++++++-->
+
+  <joint name="caster_wheel_with_breaks_front_right_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.12 -0.09 0.05675"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_with_breaks_front_right_link"/>
+  </joint>
+
+  <link name="caster_wheel_with_breaks_front_right_link" type="wheel">
+    <visual name="caster_wheel">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/caster_wheel_with_breaks.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0. 0"/>
+      <geometry>
+        <sphere radius="0.038"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++caster_wheel_back_right++++++++++++++++++++++++-->
+
+  <joint name="caster_wheel_back_right_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.14 -0.09 0.05675"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1.0"/>
+    <parent link="base_link"/>
+    <child link="caster_wheel_back_right_link"/>
+  </joint>
+
+  <link name="caster_wheel_back_right_link" type="wheel">
+    <visual name="caster_wheel">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/caster_wheel.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0. 0"/>
+      <geometry>
+        <sphere radius="0.038"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++fixed_wheel_right++++++++++++++++++++++++-->
+
+  <joint name="fixed_wheel_right_joint" type="continuous">
+    <origin rpy="-1.57 0 0" xyz="0 -0.166 0.0625"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1"/>
+    <parent link="base_link"/>
+    <child link="fixed_wheel_right_link"/>
+  </joint>
+
+  <link name="fixed_wheel_right_link" type="wheel">
+    <visual name="fixed_wheel_right">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/roda_motriu.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0765"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++fixed_wheel_left++++++++++++++++++++++++-->
+
+  <joint name="fixed_wheel_left_joint" type="continuous">
+    <origin rpy="1.57 0 0" xyz="0 0.166 0.0625"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-1e+16" upper="1e+16" velocity="3.5"/>
+    <joint_properties damping="1.0" friction="1"/>
+    <parent link="base_link"/>
+    <child link="fixed_wheel_left_link"/>
+  </joint>
+
+  <link name="fixed_wheel_left_link" type="wheel">
+    <visual name="fixed_wheel_left">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/roda_motriu.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy=" 0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0765"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!--+++++++++++++++++++laserscanner_link++++++++++++++++++++++++-->
+  <joint name="laser_1_joint" type="fixed">
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 3.14 3.14" xyz="0.133 0 0.149"/>
+    <parent link="base_link"/>
+    <child link="laser_1"/>
+  </joint>
+
+  <link name="laser_1" type="laser">
+    <visual>
+      <origin rpy="3.14 0 3.14" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://pilz_agv/robot/meshes/PSENscan.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
+
